@@ -1,9 +1,9 @@
-describe('calculator', () => {
-  it('should add number', () => {
-    cy.visit('/');
-    cy.findByText('1').click();
-    cy.findByText('+').click();
-    cy.findByText('2')
+describe("calculator", () => {
+  it("should add number", () => {
+    cy.visit("/");
+    cy.findByText("1").click();
+    cy.findByText("+").click();
+    cy.findByText("2")
       // .then((subject) => {
       //   debugger;
       //   return subject;
@@ -11,7 +11,7 @@ describe('calculator', () => {
       // .debug()
       .pause()
       .click();
-    cy.findByText('=').click();
-    cy.findByTestId('total').should('have.text', '4');
+    cy.findByText("=").click();
+    cy.findByTestId("total").should("have.text", "4");
   });
 });
