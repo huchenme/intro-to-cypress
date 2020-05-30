@@ -6,7 +6,7 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test:e2e": "is-ci test:e2e:run test:e2e:dev",
-    "pretest:e2e:run": "npm run build",
+    "pretest:e2e:run": "yarn build",
     "test:e2e:run": "start-test start 8080 cy:run",
     "test:e2e:dev": "start-test dev 8080 cy:open",
     "dev": "npm-run-all --parallel dev:*",
@@ -19,13 +19,13 @@
     "start:client": "serve --no-clipboard --single --listen 8080 dist",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|css|html|md)\"",
     "lint": "jest --config test/jest.lint.js",
-    "validate": "npm run test:e2e:run",
-    "postinstall": "cd server && npm install",
-    "setup": "npm install && npm run validate"
+    "validate": "yarn test:e2e:run",
+    "postinstall": "cd server && yarn install",
+    "setup": "yarn install && yarn validate"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test:e2e:run"
+      "pre-commit": "lint-staged && yarn test:e2e:run"
     }
   },
   "lint-staged": {
