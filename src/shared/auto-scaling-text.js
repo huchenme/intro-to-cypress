@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./auto-scaling-text.module.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './auto-scaling-text.module.css';
 
 function getScale(node) {
   if (!node) {
@@ -26,7 +26,7 @@ function AutoScalingText({ children }) {
       className={styles.autoScalingText}
       style={{ transform: `scale(${scale},${scale})` }}
       ref={nodeRef}
-      data-testid="total"
+      data-test-id="total"
     >
       {children}
     </div>
