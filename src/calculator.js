@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CalculatorDisplay from "calculator-display";
-import styles from "./calculator.module.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import CalculatorDisplay from 'calculator-display';
+import styles from './calculator.module.css';
 
-function CalculatorKey({ className = "", ...props }) {
+function CalculatorKey({ className = '', ...props }) {
   return (
     <button className={`${styles.calculatorKey} ${className}`} {...props} />
   );
@@ -13,11 +13,11 @@ CalculatorKey.propTypes = {
 };
 
 const CalculatorOperations = {
-  "/": (prevValue, nextValue) => prevValue / nextValue,
-  "*": (prevValue, nextValue) => prevValue * nextValue,
-  "+": (prevValue, nextValue) => prevValue + nextValue,
-  "-": (prevValue, nextValue) => prevValue - nextValue,
-  "=": (prevValue, nextValue) => nextValue,
+  '/': (prevValue, nextValue) => prevValue / nextValue,
+  '*': (prevValue, nextValue) => prevValue * nextValue,
+  '+': (prevValue, nextValue) => prevValue + nextValue,
+  '-': (prevValue, nextValue) => prevValue - nextValue,
+  '=': (prevValue, nextValue) => nextValue,
 };
 
 function calcReducer(currentState, newState) {
@@ -27,7 +27,7 @@ function calcReducer(currentState, newState) {
 function Calculator() {
   const [state, setState] = React.useReducer(calcReducer, {
     value: null,
-    displayValue: "0",
+    displayValue: '0',
     operator: null,
     waitingForOperand: false,
   });
@@ -36,7 +36,7 @@ function Calculator() {
   function handleKeyDown(event) {
     let { key } = event;
 
-    if (key === "Enter") key = "=";
+    if (key === 'Enter') key = '=';
 
     if (/\d/.test(key)) {
       event.preventDefault();
@@ -44,19 +44,19 @@ function Calculator() {
     } else if (key in CalculatorOperations) {
       event.preventDefault();
       performOperation(key);
-    } else if (key === ".") {
+    } else if (key === '.') {
       event.preventDefault();
       inputDot();
-    } else if (key === "%") {
+    } else if (key === '%') {
       event.preventDefault();
       inputPercent();
-    } else if (key === "Backspace") {
+    } else if (key === 'Backspace') {
       event.preventDefault();
       clearLastChar();
-    } else if (key === "Clear") {
+    } else if (key === 'Clear') {
       event.preventDefault();
 
-      if (state.displayValue === "0") {
+      if (state.displayValue === '0') {
         clearAll();
       } else {
         clearDisplay();
@@ -65,14 +65,14 @@ function Calculator() {
   }
 
   React.useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   });
 
   function clearAll() {
     setState({
       value: null,
-      displayValue: "0",
+      displayValue: '0',
       operator: null,
       waitingForOperand: false,
     });
@@ -80,13 +80,13 @@ function Calculator() {
 
   function clearDisplay() {
     setState({
-      displayValue: "0",
+      displayValue: '0',
     });
   }
 
   function clearLastChar() {
     setState({
-      displayValue: displayValue.substring(0, displayValue.length - 1) || "0",
+      displayValue: displayValue.substring(0, displayValue.length - 1) || '0',
     });
   }
 
@@ -103,7 +103,7 @@ function Calculator() {
 
     if (currentValue === 0) return;
 
-    const fixedDigits = displayValue.replace(/^-?\d*\.?/, "");
+    const fixedDigits = displayValue.replace(/^-?\d*\.?/, '');
     const newValue = parseFloat(displayValue) / 100;
 
     setState({
@@ -129,7 +129,7 @@ function Calculator() {
     } else {
       setState({
         displayValue:
-          displayValue === "0" ? String(digit) : displayValue + digit,
+          displayValue === '0' ? String(digit) : displayValue + digit,
       });
     }
   }
@@ -157,8 +157,8 @@ function Calculator() {
     });
   }
 
-  const displayIsNonZero = displayValue !== "0";
-  const clearText = displayIsNonZero ? "C" : "AC";
+  const displayIsNonZero = displayValue !== '0';
+  const clearText = displayIsNonZero ? 'C' : 'AC';
 
   return (
     <div className={styles.calculator}>
@@ -258,31 +258,31 @@ function Calculator() {
         <div className={styles.operatorKeys}>
           <CalculatorKey
             className={styles.keyDivide}
-            onClick={() => performOperation("/")}
+            onClick={() => performOperation('/')}
           >
             ÷
           </CalculatorKey>
           <CalculatorKey
             className={styles.keyMultiply}
-            onClick={() => performOperation("*")}
+            onClick={() => performOperation('*')}
           >
             ×
           </CalculatorKey>
           <CalculatorKey
             className={styles.keySubtract}
-            onClick={() => performOperation("-")}
+            onClick={() => performOperation('-')}
           >
             −
           </CalculatorKey>
           <CalculatorKey
             className={styles.keyAdd}
-            onClick={() => performOperation("+")}
+            onClick={() => performOperation('+')}
           >
             +
           </CalculatorKey>
           <CalculatorKey
             className={styles.keyEquals}
-            onClick={() => performOperation("=")}
+            onClick={() => performOperation('=')}
           >
             =
           </CalculatorKey>
@@ -293,5 +293,3 @@ function Calculator() {
 }
 
 export default Calculator;
-
-/* eslint no-eq-null:0, eqeqeq:0, react/display-name:0, max-lines-per-function:0 */
