@@ -1,0 +1,25 @@
+name: Cypress Test
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Install packages
+        run: yarn install
+      - name: Run build
+        run: yarn build
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          start: yarn start
+          wait-on: 'http://localhost:8080'
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

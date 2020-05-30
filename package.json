@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "main": "index.js",
   "scripts": {
-    "cy:run": "cypress run --record --key 31e8779a-40fa-4163-beb8-90d84da55aee",
+    "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test:e2e": "is-ci test:e2e:run test:e2e:dev",
     "pretest:e2e:run": "yarn build",
