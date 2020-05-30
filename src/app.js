@@ -46,7 +46,7 @@ function App({ user, logout }) {
       >
         {user ? (
           <>
-            <div data-test-id="username">{user.username}</div>
+            <div data-test-id="username-display">{user.username}</div>
             <button type="button" onClick={logout}>
               Logout
             </button>
