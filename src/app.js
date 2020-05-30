@@ -47,6 +47,7 @@ function App({ user, logout }) {
         {user ? (
           <>
             <div data-test-id="username">{user.username}</div>
+            <div>Adding something</div>
             <button type="button" onClick={logout}>
               Logout
             </button>
